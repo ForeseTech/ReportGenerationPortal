@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.ico" />
+
+    <!-- Bootswatch CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/custom.css" />
+    <title>Report Generation | MOCK PLACEMENTS 2021</title>
+  </head>
+  <body>
+    <!-- Navbar begins here -->
+    <nav class="navbar navbar-expand-md sticky-top bg-light navbar-light">
+      <a href="#" class="navbar-brand">
+        <img src="/img/logo.png" alt="FORESE Logo" width="80" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      ></button>
+    </nav>
+    <!-- Navbar Ends Here -->
+
+    <!-- Container class begins here -->
+    <main class="container">
+      <div class="row mt-4">
+        <div class="col-md-8 m-auto">
+          <div class="card card-body">
+            <h1 class="text-center m-0 mb-3">REPORT GENERATION</h1>
+
+            <!-- Flash message partial -->
+            <% if(error && error.length) { %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong><%= error %></strong>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <% } %>
+
+            <form action="/" method="POST" class="needs-validation" novalidate>
+              <div class="form-group">
+                <!-- Input for registration number -->
+                <label for="registerNum"><b>Registration Number</b></label>
+                <input
+                  type="text"
+                  name="registerNum"
+                  id="registerNum"
+                  class="form-control"
+                  placeholder="Enter Registration Number"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">GET REPORT</button>
+              <p class="mt-2">Click <a href="/students">here</a> for admin login.</p>
+            </form>
+          </div>
+          <p class="text-right">
+            If you face any issues, please reach out to us at
+            <a href="https://wa.me/9677057592"
+              ><u><i>+91-9677057592</i></u></a
+            >
+            with your <b>name and register number</b>.
+          </p>
+        </div>
+      </div>
+    </main>
+    <!-- Container class ends here -->
+
+    <!-- Footer Begins here -->
+    <footer class="bg-light text-center">
+      Copyright &copy; 2021 <b>FOR</b>um for <b>E</b>conomic <b>S</b>tudies by <b>E</b>ngineers - Designed and Developed
+      by
+      <b>FORESE Tech</b>
+    </footer>
+    <!-- Footer Ends Here -->
+  </body>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  <!-- PopperJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+  <!-- BootstrapJS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- Form Validation -->
+  <script src="/js/validateForms.js"></script>
+</html>

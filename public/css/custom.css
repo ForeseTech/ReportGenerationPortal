@@ -1,0 +1,10 @@
+/* CSS for the footer */
+footer {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  padding: 0.65rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 2;
+}
