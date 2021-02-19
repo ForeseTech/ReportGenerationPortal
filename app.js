@@ -10,6 +10,7 @@ const flash = require('connect-flash');
 
 // Import Student Model
 const Student = require('./models/studentModel');
+const User = require('./models/userModel');
 
 // Instantiate express app
 const app = express();
@@ -58,7 +59,7 @@ app.get('/', (req, res) => {
 
 app.post('/', async (req, res) => {
   const registerNum = parseInt(req.body.registerNum);
-  const student = await Student.findOne({ register_num: registerNum });
+  const student = await Student.findOne({ register_num: registerNum }).populate('interviewers');
   if (student) {
     res.render('view', { student });
   } else {
