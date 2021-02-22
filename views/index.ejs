@@ -15,22 +15,8 @@
     <title>Report Generation | MOCK PLACEMENTS 2021</title>
   </head>
   <body>
-    <!-- Navbar begins here -->
-    <nav class="navbar navbar-expand-md sticky-top bg-light navbar-light">
-      <a href="#" class="navbar-brand">
-        <img src="/img/logo.png" alt="FORESE Logo" width="80" />
-      </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      ></button>
-    </nav>
-    <!-- Navbar Ends Here -->
+    <!-- Include Navbar Partial -->
+    <%- include("partials/navbar.ejs"); %>
 
     <!-- Container class begins here -->
     <main class="container">
@@ -78,13 +64,8 @@
     </main>
     <!-- Container class ends here -->
 
-    <!-- Footer Begins here -->
-    <footer class="bg-light text-center">
-      Copyright &copy; 2021 <b>FOR</b>um for <b>E</b>conomic <b>S</b>tudies by <b>E</b>ngineers - Designed and Developed
-      by
-      <b>FORESE Tech</b>
-    </footer>
-    <!-- Footer Ends Here -->
+    <!-- Include Navbar Partial -->
+    <%- include("partials/footer.ejs"); %>
   </body>
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

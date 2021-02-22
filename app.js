@@ -11,6 +11,7 @@ const flash = require('connect-flash');
 // Import Student Model
 const Student = require('./models/studentModel');
 const User = require('./models/userModel');
+const Score = require('./models/scoreModel');
 
 // Instantiate express app
 const app = express();
@@ -58,10 +59,20 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', async (req, res) => {
+  // Get register number from request body
   const registerNum = parseInt(req.body.registerNum);
+
+  // Find student with register number
   const student = await Student.findOne({ register_num: registerNum }).populate('interviewers');
+
   if (student) {
-    res.render('view', { student });
+    // Store studentId
+    const studentId = student['_id'];
+
+    // Get scores of the student
+    const scores = await Score.find({ student: studentId });
+
+    res.render('view', { student, scores });
   } else {
     req.flash('error', "We couldn't generate your report. Please contact support");
     res.redirect('/');

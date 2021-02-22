@@ -10,12 +10,19 @@
     <!-- Bootswatch CSS -->
     <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.css" />
 
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/Custom.css" />
+
     <title><%= student.name %> - <%= student.register_num %></title>
   </head>
   <body>
     <% const sumOfValues = (obj) => Object.values(obj).reduce((a, b) => a + b) %>
+
+    <!-- Include Navbar Partial -->
+    <%- include("partials/navbar.ejs"); %>
+
     <main class="container">
-      <h1 class="text-center">FORESE - MOCK PLACEMENTS 2021</h1>
+      <h1 class="text-center">MOCK PLACEMENTS 2021</h1>
       <h3 class="text-center">STUDENT REPORT</h3>
       <div class="row">
         <div class="col-md-4">
@@ -23,27 +30,27 @@
           <table class="table table-sm table-bordered table-hover">
             <tbody>
               <tr>
-                <td class="text-uppercase">Registration Number</td>
+                <td class="text-uppercase font-weight-bold">Registration Number</td>
                 <td><%= student.register_num %></td>
               </tr>
               <tr>
-                <td class="text-uppercase">Name</td>
+                <td class="text-uppercase font-weight-bold">Name</td>
                 <td><%= student.name %></td>
               </tr>
               <tr>
-                <td class="text-uppercase">Department</td>
+                <td class="text-uppercase font-weight-bold">Department</td>
                 <td><%= student.dept %></td>
               </tr>
               <tr>
-                <td class="text-uppercase">Section</td>
+                <td class="text-uppercase font-weight-bold">Section</td>
                 <td><%= student.section %></td>
               </tr>
               <tr>
-                <td class="text-uppercase">Mocks Preference</td>
+                <td class="text-uppercase font-weight-bold">Mocks Preference</td>
                 <td><%= student.preference %></td>
               </tr>
               <tr>
-                <td class="text-uppercase">E-Mail ID</td>
+                <td class="text-uppercase font-weight-bold">E-Mail ID</td>
                 <td><%= student.email %></td>
               </tr>
             </tbody>
@@ -77,7 +84,7 @@
             </tbody>
             <tfoot class="text-uppercase bg-light">
               <tr>
-                <td>Total Score</td>
+                <td><b>Total Score</b></td>
                 <td><%= sumOfValues(student.aptitude_scores)%> / 50</td>
               </tr>
             </tfoot>
@@ -119,7 +126,7 @@
             </tbody>
             <tfoot class="text-uppercase bg-light">
               <tr>
-                <td>Total Score</td>
+                <td><b>Total Score</b></td>
                 <td><%= sumOfValues(student.gd_scores) %> / 30</td>
               </tr>
             </tfoot>
@@ -127,29 +134,60 @@
         </div>
       </div>
 
-      <p class="h3">List of Interviews</p>
-      <table class="table table-bordered table-hover text-center" id="interviewers">
-        <thead>
-          <tr>
-            <th>SNO</th>
-            <th>Interviewer Name</th>
-            <th>Inteviewer Company</th>
-            <th>Interview Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% student.interviewers.forEach((interviewer, index) => { %> <% let interview_date = new
-          Date(interviewer.date) %> %>
-          <tr>
-            <td><%= index + 1 %></td>
-            <td><%= interviewer.name %></td>
-            <td><%= interviewer.company %></td>
-            <td><%= interview_date.getDate() %> February, 2021</td>
-          </tr>
-          <% }); %>
-        </tbody>
-      </table>
-      <p class="text-center h4">Please screenshot this page for future use.</p>
+      <% if(scores && scores.length) { %>
+      <p class="h3">Interview Results:-</p>
+      <div class="row">
+        <% student.interviewers.forEach((interviewer, index) => { %>
+        <div class="col-md-4">
+          <div class="card border-success">
+            <div class="card-body">
+              <h5 class="card-title"><%= interviewer.name %> - <%= interviewer.company %></h5>
+              <% let interview_date = new Date(interviewer.date) %> %>
+              <h6 class="card-subtitle mb-2 text-muted"><%= interview_date.getDate() %> February, 2021</h6>
+              <% scores.forEach(score => { %> 
+                <% if(score.interviewer._id.equals(interviewer._id)) { %> 
+                  <% const sumOfValues = (obj) => Object.values(obj).reduce((a, b) => parseInt(a) + parseInt(b)) %>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-uppercase">
+                      Professional Appearence : <%= score.scores["professionalAppearence"]%> / 5
+                    </li>
+                    <li class="list-group-item text-uppercase">
+                      Managerial Aptitude : <%= score.scores["managerialAptitude"]%> / 5
+                    </li>
+                    <li class="list-group-item text-uppercase">
+                      General Intelligence : <%= score.scores["generalIntelligence"]%> / 5
+                    </li>
+                    <li class="list-group-item text-uppercase">
+                      Technical Knowledge : <%= score.scores["technicalKnowledge"]%> / 5
+                    </li>
+                    <li class="list-group-item text-uppercase">
+                      Communication Skills : <%= score.scores["communicationSkills"]%> / 5
+                    </li>
+                    <li class="list-group-item text-uppercase">
+                      Self Confidence : <%= score.scores["selfConfidence"]%> / 5
+                    </li>
+                    <li class="list-group-item text-uppercase font-weight-bold">
+                      Total Score : <%= sumOfValues(score.scores); %> / 30
+                    </li>
+                  </ul>
+                  <div class="card-body">
+                    <p class="card-text"><b>COMMENTS : </b><%= score.comments %></p>
+                  </div>
+                <% } %> 
+              <% }); %>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+      <% } else { %>
+      <p class="text-uppercase font-weight-bold">
+        You either did not attend any online interviews or you have chosen to attend mock placements offline.
+      </p>
+      <% } %>
     </main>
+
+    <!-- Include Footer Partial -->
+    <%- include("partials/footer.ejs"); %>
   </body>
 </html>
