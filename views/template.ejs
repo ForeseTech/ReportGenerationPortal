@@ -11,6 +11,8 @@
     <title>STUDENT REPORT | MOCK PLACEMENTS 2021</title>
   </head>
   <body>
+    <% const sumOfValues = (obj) => Object.values(obj).reduce((a, b) => a + b) %>
+
     <main class="container">
       <h1 class="text-center">MOCK PLACEMENTS 2021</h1>
       <h3 class="text-center">STUDENT REPORT</h3>
@@ -34,12 +36,75 @@
             <td><%= student.section %></td>
           </tr>
           <% } %>
-
           <tr>
             <td class="text-uppercase font-weight-bold">E-Mail ID</td>
             <td><%= student.email %></td>
           </tr>
         </tbody>
+      </table>
+
+      <p class="text-uppercase"><b>Aptitude Test Results</b></p>
+      <table class="table table-sm table-bordered table-hover text-center" id="aptitudeScores">
+        <tbody>
+          <tr>
+            <td class="text-uppercase"><b>Core</b></td>
+            <td><%= student.aptitude_scores["core"] %> / 20</td>
+          </tr>
+          <tr>
+            <td class="text-uppercase"><b>Verbal</b></td>
+            <td><%= student.aptitude_scores["verbal"] %> / 10</td>
+          </tr>
+          <tr>
+            <td class="text-uppercase"><b>Quants</b></td>
+            <td><%= student.aptitude_scores["quants"] %> / 10</td>
+          </tr>
+          <tr>
+            <td class="text-uppercase"><b>Coding</b></td>
+            <td><%= student.aptitude_scores["programming"] %> / 10</td>
+          </tr>
+        </tbody>
+        <tfoot class="text-uppercase">
+          <tr>
+            <td><b>Total Score</b></td>
+            <td><%= sumOfValues(student.aptitude_scores)%> / 50</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <p class="text-uppercase"><b>Group Discussion Results</b></p>
+      <table class="table table-sm table-bordered table-hover text-center" id="gdScores">
+        <tbody>
+          <tr>
+            <td class="text-uppercase"><b>Subject Knowledge</b></td>
+            <td><%= student.gd_scores["subject_knowledge"] %> / 5</td>
+          </tr>
+          <tr>
+            <td class="text-uppercase"><b>Communication Skills</b></td>
+            <td><%= student.gd_scores["communication_skills"] %> / 5</td>
+          </tr>
+          <tr>
+            <td class="text-uppercase"><b>Body Language</b></td>
+            <td><%= student.gd_scores["body_language"] %> / 5</td>
+          </tr>
+          <tr>
+            <td class="text-uppercase"><b>Listening Skills</b></td>
+            <td><%= student.gd_scores["listening_skills"] %> / 5</td>
+          </tr>
+          <tr>
+            <td class="text-uppercase"><b>Critical Thinking</b></td>
+            <td><%= student.gd_scores["critical_thinking"] %> / 5</td>
+          </tr>
+          <tr>
+            <td class="text-uppercase"><b>Leadership Skills</b></td>
+            <td><%= student.gd_scores["leadership_skills"] %> / 5</td>
+          </tr>
+        </tbody>
+        <tfoot class="text-uppercase">
+          <tr>
+            <td><b>Total Score</b></td>
+            <td><%= sumOfValues(student.gd_scores) %> / 30</td>
+          </tr>
+        </tfoot>
       </table>
     </main>
   </body>
