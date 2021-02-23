@@ -4,15 +4,43 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootswatch CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.css" />
+
     <title>STUDENT REPORT | MOCK PLACEMENTS 2021</title>
   </head>
   <body>
-    <p>Register Number : <%= student.register_num %></p>
-    <p>Name : <%= student.name %></p>
-    <p>Department : <%= student.dept %></p>
-    <% if(student.section) { %>
-    <p>Section : <%= student.dept %></p>
-    <% } %>
-    <p>E-Mail ID : <%= student.email %></p>
+    <main class="container">
+      <h1 class="text-center">MOCK PLACEMENTS 2021</h1>
+      <h3 class="text-center">STUDENT REPORT</h3>
+      <table class="table table-sm table-bordered table-hover">
+        <tbody>
+          <tr>
+            <td class="text-uppercase font-weight-bold">Registration Number</td>
+            <td><%= student.register_num %></td>
+          </tr>
+          <tr>
+            <td class="text-uppercase font-weight-bold">Name</td>
+            <td><%= student.name %></td>
+          </tr>
+          <tr>
+            <td class="text-uppercase font-weight-bold">Department</td>
+            <td><%= student.dept %></td>
+          </tr>
+          <% if(student.section) { %>
+          <tr>
+            <td class="text-uppercase font-weight-bold">Section</td>
+            <td><%= student.section %></td>
+          </tr>
+          <% } %>
+
+          <tr>
+            <td class="text-uppercase font-weight-bold">E-Mail ID</td>
+            <td><%= student.email %></td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
   </body>
 </html>

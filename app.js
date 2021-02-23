@@ -61,7 +61,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/generate_pdf', async (req, res) => {
-  const students = await Student.find({ dept: 'CIV' });
+  const students = await Student.findOne({ dept: 'CIV' });
 
   students.forEach((student, index) => {
     ejs.renderFile(path.join(__dirname, './views/', 'template.ejs'), { student: student }, (err, data) => {
