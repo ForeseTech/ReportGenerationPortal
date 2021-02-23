@@ -5,6 +5,8 @@ if (process.env.NODE_ENV !== 'production') {
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
+const ejs = require('ejs');
+const pdf = require('html-pdf');
 const session = require('express-session');
 const flash = require('connect-flash');
 
@@ -56,6 +58,29 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   res.render('index');
+});
+
+app.get('/generate_pdf', async (req, res) => {
+  const students = await Student.find({ dept: 'CIV' });
+
+  students.forEach((student, index) => {
+    ejs.renderFile(path.join(__dirname, './views/', 'template.ejs'), { student: student }, (err, data) => {
+      let options = {
+        height: '11.25in',
+        width: '8.5in',
+        header: {
+          height: '20mm',
+        },
+        footer: {
+          height: '20mm',
+        },
+      };
+      pdf.create(data, options).toFile(`${index}.pdf`, function (err, data) {
+        console.log(data);
+      });
+    });
+  });
+  res.send('done');
 });
 
 app.post('/', async (req, res) => {
