@@ -61,21 +61,33 @@ app.get('/', (req, res) => {
 });
 
 app.get('/generate_pdf', async (req, res) => {
-  const students = await Student.find({ dept: 'CIV' });
+  const students = await Student.find({ preference: 'Offline' }).sort({ dept: 1, register_num: 1 });
 
   students.forEach((student, index) => {
     ejs.renderFile(path.join(__dirname, './views/', 'template.ejs'), { student: student }, (err, data) => {
       let options = {
+        directory: '/pdf',
         format: 'A4',
+        orientation: 'portrait',
+        type: 'pdf',
       };
       pdf
         .create(data, options)
-        .toFile(`${student.name} - ${student.register_num} (${student.dept})`, function (err, data) {
-          console.log(data);
+        .toFile(`${student.name} - ${student.register_num} (${student.dept}).pdf`, function (err, data) {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(index);
+          }
         });
     });
   });
   res.send('done');
+});
+
+app.get('/pdf/:id', async (req, res) => {
+  const student = await Student.findById(req.params.id);
+  res.render('template', { student });
 });
 
 app.post('/', async (req, res) => {

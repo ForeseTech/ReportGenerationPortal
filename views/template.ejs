@@ -8,94 +8,100 @@
     <!-- Bootswatch CSS -->
     <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.css" />
 
+    <style>
+      html {
+        border: 3px solid black;
+        box-sizing: border-box;
+      }
+
+      body {
+        padding: 1rem;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 2.25rem;
+      }
+
+      h1,
+      h3 {
+        font-size: 3rem;
+      }
+    </style>
+
     <title>STUDENT REPORT | MOCK PLACEMENTS 2021</title>
   </head>
   <body>
     <% const sumOfValues = (obj) => Object.values(obj).reduce((a, b) => a + b) %>
 
-    <main class="container">
-      <h1 class="text-center">MOCK PLACEMENTS 2021</h1>
-      <h3 class="text-center">STUDENT REPORT</h3>
-      <table class="table table-sm table-bordered table-hover">
-        <tbody>
-          <tr>
-            <td class="text-uppercase font-weight-bold">Registration Number</td>
-            <td><%= student.register_num %></td>
-          </tr>
-          <tr>
-            <td class="text-uppercase font-weight-bold">Name</td>
-            <td><%= student.name %></td>
-          </tr>
-          <tr>
-            <td class="text-uppercase font-weight-bold">Department</td>
-            <td><%= student.dept %></td>
-          </tr>
-          <% if(student.section) { %>
-          <tr>
-            <td class="text-uppercase font-weight-bold">Section</td>
-            <td><%= student.section %></td>
-          </tr>
-          <% } %>
-          <tr>
-            <td class="text-uppercase font-weight-bold">E-Mail ID</td>
-            <td><%= student.email %></td>
-          </tr>
-        </tbody>
-      </table>
+    <main class="container" id="report">
+      <h1 class="text-center h1">MOCK PLACEMENTS 2021</h1>
+      <h3 class="text-center h3">STUDENT REPORT</h3>
 
-      <p class="text-uppercase"><b>Aptitude Test Results</b></p>
+      <br />
+
+      <p class="mb-0"><b>Student Registration Number</b> : <%= student.register_num %></p>
+      <p class="mb-0"><b>Student Name : </b><%= student.name %></p>
+      <p class="mb-0"><b>Student Department : </b><%= student.dept %></p>
+      <% if(student.section) { %>
+      <p class="mb-0"><b>Student Section : </b><%= student.section %></p>
+      <% } %>
+      <p class="mb-0"><b>Student E-Mail ID : </b><%= student.email %></p>
+
+      <br />
+
+      <p class="text-uppercase"><b>Aptitude Test Results:-</b></p>
       <table class="table table-sm table-bordered table-hover text-center" id="aptitudeScores">
         <tbody>
           <tr>
-            <td class="text-uppercase"><b>Core</b></td>
+            <td>Core</td>
             <td><%= student.aptitude_scores["core"] %> / 20</td>
           </tr>
           <tr>
-            <td class="text-uppercase"><b>Verbal</b></td>
+            <td>Verbal</td>
             <td><%= student.aptitude_scores["verbal"] %> / 10</td>
           </tr>
           <tr>
-            <td class="text-uppercase"><b>Quants</b></td>
+            <td>Quants</td>
             <td><%= student.aptitude_scores["quants"] %> / 10</td>
           </tr>
           <tr>
-            <td class="text-uppercase"><b>Coding</b></td>
+            <td>Coding</td>
             <td><%= student.aptitude_scores["programming"] %> / 10</td>
           </tr>
         </tbody>
-        <tfoot class="text-uppercase">
+        <tfoot>
           <tr>
-            <td><b>Total Score</b></td>
+            <td class="text-uppercase"><b>Total Score</b></td>
             <td><%= sumOfValues(student.aptitude_scores)%> / 50</td>
           </tr>
         </tfoot>
       </table>
 
-      <p class="text-uppercase"><b>Group Discussion Results</b></p>
+      <br />
+
+      <p class="text-uppercase"><b>Group Discussion Results:-</b></p>
       <table class="table table-sm table-bordered table-hover text-center" id="gdScores">
         <tbody>
           <tr>
-            <td class="text-uppercase"><b>Subject Knowledge</b></td>
+            <td>Subject Knowledge</td>
             <td><%= student.gd_scores["subject_knowledge"] %> / 5</td>
           </tr>
           <tr>
-            <td class="text-uppercase"><b>Communication Skills</b></td>
+            <td>Communication Skills</td>
             <td><%= student.gd_scores["communication_skills"] %> / 5</td>
           </tr>
           <tr>
-            <td class="text-uppercase"><b>Body Language</b></td>
+            <td>Body Language</td>
             <td><%= student.gd_scores["body_language"] %> / 5</td>
           </tr>
           <tr>
-            <td class="text-uppercase"><b>Listening Skills</b></td>
+            <td>Listening Skills</td>
             <td><%= student.gd_scores["listening_skills"] %> / 5</td>
           </tr>
           <tr>
-            <td class="text-uppercase"><b>Critical Thinking</b></td>
+            <td>Critical Thinking</td>
             <td><%= student.gd_scores["critical_thinking"] %> / 5</td>
           </tr>
           <tr>
-            <td class="text-uppercase"><b>Leadership Skills</b></td>
+            <td>Leadership Skills</td>
             <td><%= student.gd_scores["leadership_skills"] %> / 5</td>
           </tr>
         </tbody>
@@ -108,4 +114,7 @@
       </table>
     </main>
   </body>
+  <script>
+    alert('Click Ctrl + P to print the page in PDF format.');
+  </script>
 </html>
