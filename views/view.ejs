@@ -135,6 +135,35 @@
         </div>
       </div>
 
+      <% if(student.preference=== "Offline") { %> 
+      <p class="h3">List of Offline Interviews</p>
+      <table class="table table-bordered table-hover text-center" id="interviewers">
+        <thead>
+          <tr>
+            <th>SNO</th>
+            <th>Interviewer Name</th>
+            <th>Inteviewer Company</th>
+            <th>Interview Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% student.interviewers.forEach((interviewer, index) => { %> <% let interview_date = new
+          Date(interviewer.date) %> %>
+          <tr>
+            <td><%= index + 1 %></td>
+            <td><%= interviewer.name %></td>
+            <td><%= interviewer.company %></td>
+            <td><%= interview_date.getDate() %> February, 2021</td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+
+      <p class="text-uppercase font-weight-bold">
+        The Placement Cell and Team FORESE wish you all the very best for MOCK PLACEMENTS 2021. We are confident you will put your best foot forward.
+      </p>
+      <% } %> 
+
       <% if(scores && scores.length) { %>
       <p class="h3">Interview Results:-</p>
       <div class="row">
