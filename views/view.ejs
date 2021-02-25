@@ -135,7 +135,7 @@
         </div>
       </div>
 
-      <p class="h3">List of Offline Interviews</p>
+      <p class="h3">List of  <%= student.preference %> Interviews</p>
       <table class="table table-bordered table-hover text-center" id="interviewers">
         <thead>
           <tr>
@@ -163,7 +163,7 @@
       </p>
 
       <% if(scores && scores.length) { %>
-      <p class="h3">Interview Results:-</p>
+      <p class="h3">Interviewer Feedback:-</p>
       <div class="row">
         <% student.interviewers.forEach((interviewer, index) => { %>
         <div class="col-md-4">
