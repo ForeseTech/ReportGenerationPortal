@@ -24,7 +24,7 @@
     <main class="container">
       <h1 class="text-center">MOCK PLACEMENTS 2021</h1>
       <h3 class="text-center">STUDENT REPORT</h3>
-      <h5><a href="/pdf/<%= student._id  %>" style="text-decoration: underline;" target="_blank">Download as PDF</a></h6>
+      <h5><a href="/pdf/<%= student._id  %>" style="text-decoration: underline" target="_blank">Download as PDF</a></h5>
       <div class="row">
         <div class="col-md-4">
           <p class="text-uppercase"><b>Student Details</b></p>
@@ -135,7 +135,7 @@
         </div>
       </div>
 
-      <p class="h3">List of  <%= student.preference %> Interviews</p>
+      <p class="h3">List of Interviews</p>
       <table class="table table-bordered table-hover text-center" id="interviewers">
         <thead>
           <tr>
@@ -159,50 +159,48 @@
       </table>
 
       <p class="text-uppercase font-weight-bold">
-        The Placement Cell and Team FORESE wish you all the very best for MOCK PLACEMENTS 2021. We are confident you will put your best foot forward.
+        The Placement Cell and Team FORESE wish you all the very best for MOCK PLACEMENTS 2021. We are confident you
+        will put your best foot forward.
       </p>
 
       <% if(scores && scores.length) { %>
+
       <p class="h3">Interviewer Feedback:-</p>
       <div class="row">
-        <% student.interviewers.forEach((interviewer, index) => { %>
+        <% scores.forEach(score => { %>
         <div class="col-md-4">
           <div class="card border-success">
             <div class="card-body">
-              <h5 class="card-title"><%= interviewer.name %> - <%= interviewer.company %></h5>
-              <% let interview_date = new Date(interviewer.date) %> %>
+              <h5 class="card-title"><%= score.interviewer.name %> - <%= score.interviewer.company %></h5>
+              <% let interview_date = new Date(score.interviewer.interview_date) %> %>
               <h6 class="card-subtitle mb-2 text-muted"><%= interview_date.getDate() %> February, 2021</h6>
-              <% scores.forEach(score => { %> 
-                <% if(score.interviewer._id.equals(interviewer._id)) { %> 
-                  <% const sumOfValues = (obj) => Object.values(obj).reduce((a, b) => parseInt(a) + parseInt(b)) %>
-                  <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-uppercase">
-                      Professional Appearence : <%= score.scores["professionalAppearence"]%> / 5
-                    </li>
-                    <li class="list-group-item text-uppercase">
-                      Managerial Aptitude : <%= score.scores["managerialAptitude"]%> / 5
-                    </li>
-                    <li class="list-group-item text-uppercase">
-                      General Intelligence : <%= score.scores["generalIntelligence"]%> / 5
-                    </li>
-                    <li class="list-group-item text-uppercase">
-                      Technical Knowledge : <%= score.scores["technicalKnowledge"]%> / 5
-                    </li>
-                    <li class="list-group-item text-uppercase">
-                      Communication Skills : <%= score.scores["communicationSkills"]%> / 5
-                    </li>
-                    <li class="list-group-item text-uppercase">
-                      Self Confidence : <%= score.scores["selfConfidence"]%> / 5
-                    </li>
-                    <li class="list-group-item text-uppercase font-weight-bold">
-                      Total Score : <%= sumOfValues(score.scores); %> / 30
-                    </li>
-                  </ul>
-                  <div class="card-body">
-                    <p class="card-text"><b>COMMENTS : </b><%= score.comments %></p>
-                  </div>
-                <% } %> 
-              <% }); %>
+              <% const sumOfValues = (obj) => Object.values(obj).reduce((a, b) => parseInt(a) + parseInt(b)) %>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item text-uppercase">
+                  Professional Appearence : <%= score.scores["professionalAppearence"] %> / 5
+                </li>
+                <li class="list-group-item text-uppercase">
+                  Managerial Aptitude : <%= score.scores["managerialAptitude"] %> / 5
+                </li>
+                <li class="list-group-item text-uppercase">
+                  General Intelligence : <%= score.scores["generalIntelligence"] %> / 5
+                </li>
+                <li class="list-group-item text-uppercase">
+                  Technical Knowledge : <%= score.scores["technicalKnowledge"] %> / 5
+                </li>
+                <li class="list-group-item text-uppercase">
+                  Communication Skills : <%= score.scores["communicationSkills"] %> / 5
+                </li>
+                <li class="list-group-item text-uppercase">
+                  Self Confidence : <%= score.scores["selfConfidence"]%> / 5
+                </li>
+                <li class="list-group-item text-uppercase font-weight-bold">
+                  Total Score : <%= sumOfValues(score.scores); %> / 30
+                </li>
+              </ul>
+              <div class="card-body">
+                <p class="card-text"><b>COMMENTS : </b><%= score.comments %></p>
+              </div>
             </div>
           </div>
         </div>
@@ -210,7 +208,8 @@
       </div>
       <% } else { %>
       <p class="text-uppercase font-weight-bold">
-        You have no interviewer feedback because you did not attend any online interviews or you have chosen to attend mock placements offline.
+        You have no interviewer feedback because you did not attend any online interviews or you have chosen to attend
+        mock placements offline.
       </p>
       <% } %>
     </main>

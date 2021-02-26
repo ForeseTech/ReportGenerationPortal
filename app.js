@@ -102,7 +102,7 @@ app.post('/', async (req, res) => {
     const studentId = student['_id'];
 
     // Get scores of the student
-    const scores = await Score.find({ student: studentId });
+    const scores = await Score.find({ student: studentId }).populate('interviewer');
 
     res.render('view', { student, scores });
   } else {
