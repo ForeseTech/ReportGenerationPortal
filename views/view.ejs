@@ -135,29 +135,11 @@
         </div>
       </div>
 
-      <p class="h3">List of Interviews</p>
-      <table class="table table-bordered table-hover text-center" id="interviewers">
-        <thead>
-          <tr>
-            <th>SNO</th>
-            <th>Interviewer Name</th>
-            <th>Inteviewer Company</th>
-            <th>Interview Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% student.interviewers.forEach((interviewer, index) => { %> <% let interview_date = new
-          Date(interviewer.date) %> %>
-          <tr>
-            <td><%= index + 1 %></td>
-            <td><%= interviewer.name %></td>
-            <td><%= interviewer.company %></td>
-            <td><%= interview_date.getDate() %> February, 2021</td>
-          </tr>
-          <% }); %>
-        </tbody>
-      </table>
-
+      <p class="text-uppercase font-weight-bold">
+        Please ignore the list of the companies which was present here before. Please refer to the excel sheet which has
+        been sent to your e-mail id for company allocation on 27<sup>th</sup> February. Company allocation for students
+        particpating on 28<sup>th</sup> February will be sent later.
+      </p>
       <p class="text-uppercase font-weight-bold">
         The Placement Cell and Team FORESE wish you all the very best for MOCK PLACEMENTS 2021. We are confident you
         will put your best foot forward.
