@@ -172,7 +172,7 @@
           <div class="card border-success">
             <div class="card-body">
               <h5 class="card-title"><%= score.interviewer.name %> - <%= score.interviewer.company %></h5>
-              <% let interview_date = new Date(score.interviewer.interview_date) %> %>
+              <% let interview_date = new Date(score.interviewer.date) %>
               <h6 class="card-subtitle mb-2 text-muted"><%= interview_date.getDate() %> February, 2021</h6>
               <% const sumOfValues = (obj) => Object.values(obj).reduce((a, b) => parseInt(a) + parseInt(b)) %>
               <ul class="list-group list-group-flush">
